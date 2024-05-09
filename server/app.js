@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import postsRoutes from './routes/posts.routes.js';
@@ -8,6 +9,7 @@ app.use(fileUpload({
     tempFileDir: './upload'
 }));
 
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(postsRoutes);
 
