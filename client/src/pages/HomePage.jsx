@@ -1,5 +1,6 @@
-import { usePostContext } from "../context/postContext";
 import { VscEmptyWindow } from "react-icons/vsc";
+import { Link } from "react-router-dom";
+import { usePostContext } from "../context/postContext";
 
 export function HomePage() {
   const { posts } = usePostContext();
@@ -14,6 +15,7 @@ export function HomePage() {
 
   return (
     <div className="text-white">
+      <Link to="/new">Create Post</Link>
       {posts.map((post) => (
         <div key={post._id}>
           <h1>{post.title}</h1>
