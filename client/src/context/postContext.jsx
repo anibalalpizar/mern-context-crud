@@ -9,8 +9,8 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const res = await getPostsRequest();
-    setPosts(res.data);
+    const { data } = await getPostsRequest();
+    setPosts(data);
   };
 
   useEffect(() => {
