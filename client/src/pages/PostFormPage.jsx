@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { usePostContext } from "../context/postContext";
 
 export function PostFormPage() {
-  const { createPost, getPost } = usePostContext();
+  const { createPost, getPost, updatePost } = usePostContext();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -22,7 +22,7 @@ export function PostFormPage() {
         setPost(post);
       }
     })();
-  }, []);
+  }, [params.id]);
 
   return (
     <div className="flex items-center justify-center">
@@ -40,7 +40,9 @@ export function PostFormPage() {
             description: Yup.string().required("Required"),
           })}
           onSubmit={async (values, actions) => {
-            await createPost(values);
+            params.id
+              ? await updatePost(params.id, values)
+              : await createPost(values);
             navigate("/");
           }}
           enableReinitialize={true}
