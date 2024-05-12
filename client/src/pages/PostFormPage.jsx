@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { usePostContext } from "../context/postContext";
@@ -44,11 +45,12 @@ export function PostFormPage() {
             params.id
               ? await updatePost(params.id, values)
               : await createPost(values);
+            actions.setSubmitting(false);
             navigate("/");
           }}
           enableReinitialize={true}
         >
-          {({ handleSubmit, setFieldValue }) => (
+          {({ handleSubmit, setFieldValue, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
               <label
                 htmlFor="title"
@@ -107,8 +109,13 @@ export function PostFormPage() {
               <button
                 type="submit"
                 className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400"
+                disabled={isSubmitting}
               >
-                Save
+                {isSubmitting ? (
+                  <AiOutlineLoading3Quarters className="animate-spin h-5 w-5" />
+                ) : (
+                  "Submit"
+                )}
               </button>
             </Form>
           )}
