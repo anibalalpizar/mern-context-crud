@@ -20,7 +20,12 @@ export function HomePage() {
         <h1 className="text-2xl text-gray-300 font-bold">
           {posts.length} Posts
         </h1>
-        <Link to="/new">Create Post</Link>
+        <Link
+          to="/new"
+          className="px-3 py-2 bg-indigo-500 hover:bg-indigo-600 text-white"
+        >
+          Create Post
+        </Link>
       </header>
       <div className="grid grid-cols-3 gap-4">
         {posts.map((post) => (
