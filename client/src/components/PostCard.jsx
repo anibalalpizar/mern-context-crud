@@ -50,13 +50,23 @@ export function PostCard({ post }) {
           <h3>{post.title}</h3>
           <button
             className="bg-red-600 text-sm px-2 py-1 rounded-sm"
-            onClick={() => handleDelete(post._id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(post._id);
+            }}
           >
             Delete
           </button>
         </div>
         <p>{post.description}</p>
       </div>
+      {post.image && (
+        <img
+          src={post.image.url}
+          alt={post.title}
+          className="object-cover h-96 w-full"
+        />
+      )}
     </div>
   );
 }
