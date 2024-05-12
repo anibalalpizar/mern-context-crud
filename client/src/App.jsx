@@ -11,6 +11,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/new" element={<PostFormPage />} />
+            <Route path="/post/:id" element={<PostFormPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Toaster />
